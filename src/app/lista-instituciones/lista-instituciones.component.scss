@@ -1,0 +1,48 @@
+$color-1: #0081a7;
+$color-2: #00afb9;
+$color-3: #fdfcdc;
+$color-4: #fed9b7;
+$color-5: #f07167;
+
+.table{
+    thead{
+        tr{
+            text-align: center;
+            font-weight: bold;
+            color: $color-1;   
+        }
+    }
+    tbody{
+        color: $color-1;
+        tr{
+          
+            th{
+                color: $color-1;
+                text-align: center;
+            }
+            td{
+                text-align: center;
+                             
+            }
+            .bi-trash-fill{
+                cursor: pointer;
+            }
+        }
+    }
+ }
+
+.button{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    button{
+        background-color: $color-5;
+        border: transparent;
+        &:hover{
+            background-color: $color-4;
+            color: $color-5;
+        }
+    }
+   
+}

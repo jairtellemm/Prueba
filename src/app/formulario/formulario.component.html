@@ -1,0 +1,105 @@
+<h1>Request a new institution or branch</h1>
+<div class="container">
+    <div class="text">
+        <p>Please enter the institution as "Partner", the legal entity.</p>
+        <p>The name of the institution should be in its official language (e.g. For CIAT: Centro Internacional de Agricultura Tropical).</p>
+    </div>
+</div>
+
+<form [formGroup]="formNewInstitution" (ngSubmit)="onSubmit(formNewInstitution.value)">
+
+    <div class="question" id="question">
+        <p>Is this institution a branch?</p>
+        <div class="buttons">
+            <button class="button-1" type="button" value="yes" (click)="show()">Yes</button> 
+            <button class="button-2" type="button" value="no" (click)="hide()">No</button>
+        </div>
+    </div>
+
+    <div class="form-group container--1" id="insti" >
+        <label>Select institution headquarter</label>
+        <select formControlName="institution" class="form-select">
+            <option value="">Select an option...</option>
+            <option *ngFor="let arrSocios of soc">{{arrSocios.name}}</option>
+
+            <!-- <option value="donor"></option>
+            <option value="governmental"></option> -->
+        </select>
+    </div>
+
+    <div class="container--2">
+        <div class="form-group">
+            <label for="">Acronym</label>
+            <input type="text" class="form-control input--1" formControlName="acronym">
+            <div class="error" *ngIf="formNewInstitution.controls.acronym.errors && formNewInstitution.controls.acronym.touched">
+                It must be less than 10 characters
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="">Name</label>
+            <input type="text" class="form-control  input--2" formControlName="name" id="words">
+            <div class="error" *ngIf="formNewInstitution.controls.name.errors && formNewInstitution.controls.name.touched">
+                It must be less than 10 words
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container--3">
+        <div class="form-group">
+            <label for="">Type</label>
+            <select formControlName="type" class="form-select">
+                <!-- <option selected>Select an option...</option> -->
+                <option value="">Select an option...</option>
+                <option value="academic">Academic Institutions</option>
+                <option value="donor">Donor</option>
+                <option value="governmental">Non-Governmental Organization</option>
+                <option value="research">Research Institution</option>
+            </select>
+            <div class="error" *ngIf="formNewInstitution.controls.type.errors && formNewInstitution.controls.type.touched">
+                You must select a type
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="">Country</label>
+            <select formControlName="country" class="form-select">
+                <option value = "">Select an option...</option>
+                <option [value]="item.name"  *ngFor="let item of arrCountries">{{item.code}} - {{item.name}}</option>
+            </select>
+            <div class="error" *ngIf="formNewInstitution.controls.country.errors && formNewInstitution.controls.country.touched ">
+                You must select a country
+            </div>
+        </div>
+    </div>
+
+
+    <div class="form-group container--4">
+        <label for="">City</label>
+        <input type="text" class="form-control" formControlName="city">
+        <div class="error" *ngIf="formNewInstitution.controls.city.errors && formNewInstitution.controls.city.touched">
+            You must enter a city
+        </div>
+    </div>
+
+    <div class="form-group container--5">
+        <label for="">If you know the partner website please paste the link below</label>
+        <input type="text" placeholder="http://" class="form-control"formControlName="url">
+    </div>
+
+    <div class="submit">
+        <button type="submit" class="btn btn-primary btn-xs send" [disabled]="!formNewInstitution.valid"  (click)="onConfirm()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telegram" viewBox="0 0 16 16">
+                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.287 5.906c-.778.324-2.334.994-4.666 2.01-.378.15-.577.298-.595.442-.03.243.275.339.69.47l.175.055c.408.133.958.288 1.243.294.26.006.549-.1.868-.32 2.179-1.471 3.304-2.214 3.374-2.23.05-.012.12-.026.166.016.047.041.042.12.037.141-.03.129-1.227 1.241-1.846 1.817-.193.18-.33.307-.358.336a8.154 8.154 0 0 1-.188.186c-.38.366-.664.64.015 1.088.327.216.589.393.85.571.284.194.568.387.936.629.093.06.183.125.27.187.331.236.63.448.997.414.214-.02.435-.22.547-.82.265-1.417.786-4.486.906-5.751a1.426 1.426 0 0 0-.013-.315.337.337 0 0 0-.114-.217.526.526 0 0 0-.31-.093c-.3.005-.763.166-2.984 1.09z"/>
+              </svg>
+            Request add new partner
+        </button>
+
+        <!-- <button class="btn btn-primary mr-2" [routerLink]="['/formulario']">Formulario</button>
+        <button class="btn btn-primary " [routerLink]="['/lista']">Lista</button> -->
+    </div>
+
+    <!-- <button type="submit" class="btn btn-primary " [routerLink]="['/lista']">Lista</button> -->
+
+</form>
